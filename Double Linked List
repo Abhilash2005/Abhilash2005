@@ -1,0 +1,121 @@
+def insert_begin(self, value):
+    new_node = Node(value)
+    if self.head is None:
+        self.head = new_node
+    else:
+        new_node.next = self.head
+        self.head.prev = new_node
+        self.head = new_node
+    print(f"Inserted {value} at the beginning.")
+
+def insert_end(self, value):
+    new_node = Node(value)
+    if self.head is None:
+        self.head = new_node
+    else:
+        temp = self.head
+        while temp.next is not None:
+            temp = temp.next
+        temp.next = new_node
+        new_node.prev = temp
+    print(f"Inserted {value} at the end.")
+
+def insert_at_position(self, position, value):
+    if position < 0:
+        print("Invalid position.")
+        return
+    new_node = Node(value)
+    if position == 0:
+        new_node.next = self.head
+        if self.head is not None:
+            self.head.prev = new_node
+        self.head = new_node
+    else:
+        temp = self.head
+        for _ in range(position - 1):
+            if temp is None:
+                print("Invalid position.")
+                return
+            temp = temp.next
+        if temp is None:
+            print("Invalid position.")
+            return
+        new_node.next = temp.next
+        new_node.prev = temp
+        if temp.next is not None:
+            temp.next.prev = new_node
+        temp.next = new_node
+    print(f"Inserted {value} at position {position}.")
+
+def delete_begin(self):
+    if self.head is None:
+        print("List is empty.")
+        return
+    if self.head.next is not None:
+        self.head.next.prev = None
+    self.head = self.head.next
+    print("Deleted the first node.")
+
+def delete_end(self):
+    if self.head is None:
+        print("List is empty.")
+        return
+    temp = self.head
+    while temp.next is not None:
+        temp = temp.next
+    if temp.prev is not None:
+        temp.prev.next = None
+    else:
+        self.head = None
+    print("Deleted the last node.")
+
+def delete_at_position(self, position):
+    if self.head is None or position < 0:
+        print("Invalid position.")
+        return
+    if position == 0:
+        if self.head.next is not None:
+            self.head.next.prev = None
+        self.head = self.head.next
+    else:
+        temp = self.head
+        for _ in range(position):
+            if temp is None:
+                print("Invalid position.")
+                return
+            temp = temp.next
+        if temp is None:
+            print("Invalid position.")
+            return
+        if temp.prev is not None:
+            temp.prev.next = temp.next
+        if temp.next is not None:
+            temp.next.prev = temp.prev
+    print(f"Deleted node at position {position}.")
+
+def search_node(self, value):
+    temp = self.head
+    pos = 0
+    while temp is not None:
+        if temp.data == value:
+            print(f"Element {value} found at position {pos}.")
+            return
+        temp = temp.next
+        pos += 1
+    print(f"Element {value} not found in the list.")
+
+def count_nodes(self):
+    temp = self.head
+    count = 0
+    while temp is not None:
+        count += 1
+        temp = temp.next
+    print(f"Number of nodes: {count}")
+
+def display_list(self):
+    temp = self.head
+    print("List:", end=" ")
+    while temp is not None:
+        print(temp.data, end=" ")
+        temp = temp.next
+    print()
